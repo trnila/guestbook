@@ -7,7 +7,6 @@ if(!getenv("production")) {
 }
 
 $conf = getenv("VCAP_SERVICES");
-$conf = '{"mysql-5.1":[{"name":"guestbook","label":"mysql-5.1","plan":"free","tags":["mysql","mysql-5.1","relational"],"credentials":{"name":"d49114de5142e44f08e3cb13db29e61d1","hostname":"10.180.7.135","host":"10.180.7.135","port":3306,"user":"uqHyAhA23LpKj","username":"uqHyAhA23LpKj","password":"pF70dW6EyEMff"}}]}';
 if(!empty($conf)) {
 	$conf = json_decode($conf);
 	$credentials = $conf->{'mysql-5.1'}[0]->credentials;

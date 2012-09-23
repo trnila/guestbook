@@ -19,8 +19,10 @@
 			<h1><a href="/">Guestbook</a></h1>
 
 			<?php
-				$_flash = $_SESSION['flash' . $_GET['_fid']];
-				if($_flash) {
-					echo "<div class='alert alert-{$_flash['type']}'>{$_flash['message']}</div>";
+				if(isset($_GET['_fid'])) {
+					$_flash = isset($_SESSION['flash' . $_GET['_fid']]) ? $_SESSION['flash' . $_GET['_fid']] : NULL;
+					if($_flash) {
+						echo "<div class='alert alert-{$_flash['type']}'>{$_flash['message']}</div>";
+					}
 				}
 			?>

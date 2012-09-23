@@ -63,7 +63,7 @@ else {
 $count = $pdo->query('SELECT COUNT(id) FROM posts')->fetch();
 $count = $count[0];
 $itemsPerPage = 5;
-$page = $_GET['page'];
+$page = isset($_GET['page']) ? $_GET['page'] : 0;
 
 $results = $pdo->query('SELECT * FROM posts ORDER BY created DESC LIMIT ' . $page * $itemsPerPage . ', ' . $itemsPerPage);
 
