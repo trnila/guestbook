@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include __DIR__ . '/inc/config.php';
 
 if(isset($_GET['logout'])) {
 	unset($_SESSION['email']);
