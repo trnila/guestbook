@@ -64,10 +64,13 @@ $count = $pdo->query('SELECT COUNT(id) FROM posts')->fetch();
 $count = $count[0];
 $itemsPerPage = 5;
 $page = isset($_GET['page']) ? $_GET['page'] : 0;
+$pages = $count / $itemsPerPage;
 
 $results = $pdo->query('SELECT * FROM posts ORDER BY created DESC LIMIT ' . $page * $itemsPerPage . ', ' . $itemsPerPage);
 
+$iterations = 0;
 foreach($results as $row) {
+	$iterations++;
 	echo '<b>' . (isset($row['user_id']) ? $row['user_id'] : $row['name']) . '</b> <em>' . $row['created'] . '</em>';
 	if(isset($_SESSION['email']) && $_SESSION['email'] == $row['user_id']) {
 		echo ' <a href="?action=delete&id=' . $row['id'] . '" data-confirm="Opravdu smazat tento příspěvek?"><i class="icon-trash"></i></a>';
@@ -76,14 +79,18 @@ foreach($results as $row) {
 
 	echo $row['text'];
 	echo '<hr>';
-
-
 }
 
-echo '<div class="pagination"><ul>';
-for($i = 0; $i < $count / $itemsPerPage; $i++) {
-	echo "<li" . ($page == $i ? " class='active'" : "") . "><a href='/?page={$i}'>" . ($i+1) . "</a></li>";
+if(!$iterations) {
+	echo '<div class="alert">Momentálně zde nejsou žádný příspěvky.</div>';
 }
-echo '</ul></div>';
+
+if($pages > 1) {
+	echo '<div class="pagination"><ul>';
+	for($i = 0; $i < $pages; $i++) {
+		echo "<li" . ($page == $i ? " class='active'" : "") . "><a href='/?page={$i}'>" . ($i+1) . "</a></li>";
+	}
+	echo '</ul></div>';
+}
 
 include __DIR__ . '/inc/footer.php';
