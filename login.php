@@ -27,7 +27,7 @@ if(!empty($_POST)) {
 			else {
 				$query = $pdo->prepare('INSERT INTO users(email, password) VALUES(?, ?)');
 				$query->bindValue(1, $_POST['email']);
-				$query->bindValue(2, $_POST['password']);
+				$query->bindValue(2, hashPassword($_POST['email'], $_POST['password']));
 
 				try {
 					$query->execute();
@@ -51,7 +51,7 @@ if(!empty($_POST)) {
 	else {
 		$query = $pdo->prepare('SELECT email FROM users WHERE email = ? AND password = ?');
 		$query->bindValue(1, $_POST['email']);
-		$query->bindValue(2, $_POST['password']);
+		$query->bindValue(2, hashPassword($_POST['email'], $_POST['password']));
 
 		$query->execute();
 

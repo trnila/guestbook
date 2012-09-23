@@ -33,3 +33,8 @@ function flashMessage($message, $type = 'info') {
 
 	return $id;
 }
+
+function hashPassword($email, $password)
+{
+	return sha1(md5($password . 'guestbook') . $email);
+}
