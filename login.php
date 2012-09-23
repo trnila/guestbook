@@ -16,7 +16,9 @@ if(!empty($_POST)) {
 
 	$query->execute();
 
-	if($query->fetch()[0]) {
+	$result = $query->fetch();
+
+	if($result[0]) {
 		$_SESSION['email'] = $_POST['email'];
 
 		$id = flashMessage("Byl jste úspěšně přihlášen.", "success");

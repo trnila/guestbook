@@ -60,7 +60,8 @@ else {
 
 <?php
 
-$count = $pdo->query('SELECT COUNT(id) FROM posts')->fetch()[0];
+$count = $pdo->query('SELECT COUNT(id) FROM posts')->fetch();
+$count = $count[0];
 $itemsPerPage = 5;
 $page = $_GET['page'];
 
