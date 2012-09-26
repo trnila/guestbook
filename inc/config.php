@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+date_default_timezone_set('Europe/Prague');
+
 if(!getenv("production")) {
 	error_reporting(E_ALL);
 	ini_set('display_errors', 'on');
