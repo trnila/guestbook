@@ -16,6 +16,3 @@ CREATE TABLE `users` (
   `name` varchar(50) COLLATE utf8_czech_ci NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
-
-INSERT INTO `users` (`email`, `password`, `name`) VALUES
-('admin@example.com',	'heslo',	'');
