@@ -85,7 +85,7 @@ foreach($results as $row) {
 	}
 	echo '<br>';
 
-	echo htmlspecialchars($row['text']);
+	echo nl2br(htmlspecialchars($row['text']));
 	echo '<hr>';
 
 	echo '</div>';
