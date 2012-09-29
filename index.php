@@ -28,7 +28,7 @@ if(isset($_GET['action'])) {
 
 
 if(!empty($_POST)) {
-	if(!$_SESSION['email']) {
+	if(!isset($_SESSION['email']) || !$_SESSION['email']) {
 		$query = $pdo->prepare("INSERT INTO posts(`text`, `name`, `created`) VALUES(?, ?, NOW())");
 		$query->bindValue(1, $_POST['name']);
 		$query->bindValue(2, $_POST['text']);
@@ -41,6 +41,9 @@ if(!empty($_POST)) {
 		$query->bindValue(2, $_SESSION['email']);
 		$query->execute();
 	}
+
+	$id = flashMessage('Příspěvěk byl přídán.', 'success');
+	header('Location: /?_fid=' . $id);
 }
 
 if(isset($_SESSION['email'])) {
