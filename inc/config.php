@@ -3,9 +3,13 @@ session_start();
 
 date_default_timezone_set('Europe/Prague');
 
-if(!getenv("production")) {
-	error_reporting(E_ALL);
+error_reporting(E_ALL);
+if(getenv("development")) {
 	ini_set('display_errors', 'on');
+}
+else {
+	ini_set('display_errors', 'off');
+	ini_set('error_log', __DIR__ . '/errors.log');
 }
 
 $conf = getenv("VCAP_SERVICES");
