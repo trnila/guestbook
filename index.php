@@ -23,6 +23,7 @@ if(isset($_GET['action'])) {
 		}
 
 		header('Location: /?_fid=' . $id);
+		exit;
 	}
 }
 
@@ -44,6 +45,7 @@ if(!empty($_POST)) {
 
 	$id = flashMessage('Příspěvěk byl přídán.', 'success');
 	header('Location: /?_fid=' . $id);
+	exit;
 }
 
 if(isset($_SESSION['email'])) {

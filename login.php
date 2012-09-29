@@ -6,6 +6,7 @@ if(isset($_GET['logout'])) {
 	unset($_SESSION['email']);
 	$id = flashMessage("Byl jste odhlášen.", "success");
 	header("Location: /?_fid=" . $id);
+	exit;
 }
 
 echo '<div class="well">';
@@ -36,6 +37,7 @@ if(!empty($_POST)) {
 					$_SESSION['email'] = $_POST['email'];
 
 					header('Location: /?_fid=' . $id);
+					exit;
 				}
 				catch(PDOException $e) {
 					if($e->getCode() == 23000) {
@@ -62,6 +64,7 @@ if(!empty($_POST)) {
 
 			$id = flashMessage("Byl jste úspěšně přihlášen.", "success");
 			header('Location: /?_fid=' . $id);
+			exit;
 		}
 		else {
 			echo "<div class='alert alert-error'>Špatné jméno nebo heslo.</div>";
