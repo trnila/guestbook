@@ -76,13 +76,13 @@ $results = $pdo->query('SELECT * FROM posts ORDER BY created DESC LIMIT ' . $pag
 $iterations = 0;
 foreach($results as $row) {
 	$iterations++;
-	echo '<b>' . (isset($row['user_id']) ? $row['user_id'] : $row['name']) . '</b> <em>' . $row['created'] . '</em>';
+	echo '<b>' . htmlspecialchars(isset($row['user_id']) ? $row['user_id'] : $row['name']) . '</b> <em>' . $row['created'] . '</em>';
 	if(isset($_SESSION['email']) && $_SESSION['email'] == $row['user_id']) {
 		echo ' <a href="?action=delete&id=' . $row['id'] . '" data-confirm="Opravdu smazat tento příspěvek?"><i class="icon-trash"></i></a>';
 	}
 	echo '<br>';
 
-	echo $row['text'];
+	echo htmlspecialchars($row['text']);
 	echo '<hr>';
 }
 
