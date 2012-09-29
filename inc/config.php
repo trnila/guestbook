@@ -29,6 +29,7 @@ else {
 
 $pdo = new PDO($dsn, $username, $password);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo->query('SET time_zone = "' . date('P') . '"');
 
 function flashMessage($message, $type = 'info') {
 	$id = mt_rand();
