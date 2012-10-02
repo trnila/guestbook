@@ -30,7 +30,7 @@ if(isset($_GET['action'])) {
 
 if(!empty($_POST)) {
 	if(!isset($_SESSION['email']) || !$_SESSION['email']) {
-		$query = $pdo->prepare("INSERT INTO posts(`text`, `name`, `created`) VALUES(?, ?, NOW())");
+		$query = $pdo->prepare("INSERT INTO posts(`name`, `text`, `created`) VALUES(?, ?, NOW())");
 		$query->bindValue(1, $_POST['name']);
 		$query->bindValue(2, $_POST['text']);
 		
