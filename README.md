@@ -1,1 +1,0 @@
-Demo: http://guestbook.rs.af.cm/
